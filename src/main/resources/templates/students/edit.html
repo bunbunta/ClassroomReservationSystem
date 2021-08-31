@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="../../static/css/style.css" th:href="@{/css/style.css}"/>
+    <title>学生編集画面</title>
+</head>
+<body>
+<form th:action="@{/students/edit}" th:object="${studentForm}" method="post">
+    <table>
+        <tr><td>学生名:</td><td><input type="text" name="name" th:field="*{name}" th:errorclass="error-input"/><span th:if="${#fields.hasErrors('name')}" th:errors="*{title}" class="error-messages">error!</span></td></tr>
+        <tr><td>学年：</td><td><input type="text" name="grade" th:field="*{grade}" /><span th:if="${#fields.hasErrors('grade')}" th:errors="*{grade}" class="error-messages">error!</span></td></tr>
+        <tr><td>電話番号：</td><td><input type="text" name="tell" th:field="*{tell}" /></td></tr>
+        <tr><td>住所：</td><td><input type="text" name="address" th:field="*{address}" /></td></tr>
+
+    </table>
+    <input type="hidden" name="id" th:value="${param.id[0]}" />
+    <input type="submit" name="goToTop" value="戻る" />
+    <input type="submit" value="更新" />
+</form>
+</body>
+</html>
